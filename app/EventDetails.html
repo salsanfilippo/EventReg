@@ -43,11 +43,11 @@
         <ul class="thumbnails">
             <li ng-repeat="session in event.sessions">
                 <div class="row col-xs-10 session">
-                    <div class="well col-xs-1 votingWidget">
+                    <div class="well col-xs-1 votingWidget" style="text-align: center; left: -10px;">
                         <div class="votingButton" ng-click="upVoteSession(session)">
                             <i class="glyphicon glyphicon-chevron-up"></i>
                         </div>
-                        <div class="badge badge-inverse" style="margin-left: -3px; margin-bottom: 2px;">
+                        <div class="badge" style="margin-bottom: 2px;">
                             <div>{{ session.upVoteCount }}</div>
                         </div>
                         <div class="votingButton" ng-click="downVoteSession(session)">
