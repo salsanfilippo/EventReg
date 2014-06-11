@@ -4,8 +4,8 @@ eventsApp.controller('EventController',
     function EventController($scope) {
         $scope.event = {
             name: 'Angular Boot Camp',
-            date: '01/01/2013',
-            time: '10:30am',
+            date: '2013-01-01',
+            time: '2013-01-01T10:30:00',
             location: {
                 address: 'Google Headquarters',
                 city: 'Mountain View',
