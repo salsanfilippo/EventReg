@@ -21,51 +21,49 @@
             <h1>New Event</h1>
             <hr/>
             <form>
-                <fieldset>
-                    <div class="row">
-                        <div class="col-xs-10">
-                            <label for="eventName">Event Name:</label>
-                            <input id="eventName" class="form-control" type="text" placeholder="Name of your event."/>
-                        </div>
+                <div class="row">
+                    <div class="col-xs-10">
+                        <label for="eventName">Event Name:</label>
+                        <input id="eventName" class="form-control" type="text" ng-model="event.name" placeholder="Name of your event."/>
                     </div>
-                    <div class="row">
-                        <div class="col-xs-5">
-                            <label for="eventDate">Event Date:</label>
-                            <input id="eventDate" type="text" class="form-control" placeholder="Format 'yyyy-mm-dd"/>
-                        </div>
-                        <div class="col-xs-5">
-                            <label for="eventTime">Event Time:</label>
-                            <input id="eventTime" type="text" class="form-control" placeholder="Start and end time."/>
-                        </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-5">
+                        <label for="eventDate">Event Date:</label>
+                        <input id="eventDate" type="text" class="form-control" ng-model="event.date" placeholder="Format 'yyyy-mm-dd"/>
                     </div>
-                    <div class="row">
-                        <div class="col-xs-10">
-                            <label for="eventLocation">Event Location:</label>
-                            <input id="eventLocation" type="text" class="form-control" placeholder="Address of your event."/>
-                        </div>
+                    <div class="col-xs-5">
+                        <label for="eventTime">Event Time:</label>
+                        <input id="eventTime" type="text" class="form-control" ng-model="event.time" placeholder="Start and end time."/>
                     </div>
-                    <div class="row" style="margin-top: 10px;">
-                        <div class="col-xs-5">
-                            <input id="eventCity" type="text" class="form-control input-small" placeholder="City of your event."/>
-                        </div>
-                        <div class="col-xs-5">
-                            <input id="eventProvince" type="text" class="form-control input-small" placeholder="State of your event."/>
-                        </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-10">
+                        <label for="eventLocation">Event Location:</label>
+                        <input id="eventLocation" type="text" class="form-control" ng-model="event.location.address" placeholder="Address of your event."/>
                     </div>
-                    <div class="row">
-                        <div class="col-xs-10">
-                            <label for="eventImageUrl">Image:</label>
-                            <input id="eventImageUrl" type="url" class="form-control input-xlarge" placeholder="URL of event image."/>
-                        </div>
+                </div>
+                <div class="row" style="margin-top: 10px;">
+                    <div class="col-xs-5">
+                        <input id="eventCity" type="text" class="form-control input-small" ng-model="event.location.city" placeholder="City of your event."/>
                     </div>
-                </fieldset>
+                    <div class="col-xs-5">
+                        <input id="eventProvince" type="text" class="form-control input-small" ng-model="event.location.province" placeholder="State of your event."/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-10">
+                        <label for="eventImageUrl">Image:</label>
+                        <input id="eventImageUrl" type="url" class="form-control input-xlarge" ng-model="event.imageUrl" placeholder="URL of event image."/>
+                    </div>
+                </div>
 
                 <img ng-src="{{ event.imageUrl }}" src="" />
                 <br/>
                 <br/>
 
-                <button type="submit" class="btn btn-primary">Save</button>
-                <button type="button" class="btn btn-default">Cancel</button>
+                <button type="submit" ng-click="saveEvent(event)" class="btn btn-primary">Save</button>
+                <button type="button" ng-click="cancelEvent()" class="btn btn-default">Cancel</button>
             </form>
         </div>
     </div>
