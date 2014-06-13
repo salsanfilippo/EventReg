@@ -10,6 +10,7 @@
             "imageUrl": "http://pascalprecht.github.com/slides/angularjs-insights/img/angularjs-logo.png",
             "sessions": [
                 {
+                    "id": 1,
                     "name": "Directives Masterclass",
                     "creatorName": "Bob Smith",
                     "duration": 1,
@@ -18,6 +19,7 @@
                     "upVoteCount": 0
                 },
                 {
+                    "id": 2,
                     "name": "Scopes for fun and profit",
                     "creatorName": "John Doe",
                     "duration": 3,
@@ -26,6 +28,7 @@
                     "upVoteCount": 0
                 },
                 {
+                    "id": 3,
                     "name": "Well Behaved Controllers",
                     "creatorName": "Jane Doe",
                     "duration": 2,

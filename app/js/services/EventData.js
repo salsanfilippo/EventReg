@@ -1,19 +1,15 @@
 'use strict';
 
-eventsApp.factory('eventData', function ($http, $q) {
+eventsApp.factory('eventData', function ($resource) {
+    var resource = $resource('/data/event/:id', {id:'@id'});
     return {
-        getEvent: function (successCB) {
-            var deferred = $q.defer();
+        getEvent: function () {
+            return resource.get({id:1});
+        },
 
-            $http({ method: 'GET', url: '/data/event/1' }).
-                success(function(data, status, headers, config) {
-                    deferred.resolve(data);
-                }).
-                error(function(data, status, headers, config) {
-                    deferred.reject(status);
-                });
-
-            return deferred.promise;
+        saveEvent: function(event) {
+            event.id = 999;
+            return resource.save(event);
         }
     };
 });
