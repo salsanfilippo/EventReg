@@ -27,8 +27,8 @@
         </div>
         <div class="row">
             <div class="col-xs-5">
-                <div><strong>Date: </strong>{{ event.date | date:mediumDate }}</div>
-                <div><strong>Time: </strong>{{ event.time | date:'HH:mma' }}</div>
+                <div><strong>Date: </strong>{{event.date | date:'MM/dd/yyyy' }}</div>
+                <div><strong>Time: </strong>{{event.date | date:'hh:mm a' }}</div>
             </div>
             <div class="col-xs-5">
                 <address>

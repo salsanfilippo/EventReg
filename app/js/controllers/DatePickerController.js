@@ -3,7 +3,7 @@ var DatePickerController = function ($scope) {
         $scope.event.date = new Date();
     };
 
-    $scope.clear = function () {
+    $scope.clearDate = function () {
         $scope.event.date = null;
     };
 
@@ -32,6 +32,22 @@ var DatePickerController = function ($scope) {
         return false; // ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
     };
 
+    $scope.now = function() {
+        $scope.event.time = new Date();
+    };
+
+    $scope.timeChanged = function () {
+        console.log('Time changed to: ' + $scope.event.time);
+    };
+
+    $scope.clearTime = function() {
+        $scope.event.time = null;
+    };
+
+    $scope.toggleMeridian = function() {
+        $scope.isMeridian = !$scope.isMeridian;
+    };
+
     $scope.event = {};
     $scope.today();
 
@@ -46,4 +62,12 @@ var DatePickerController = function ($scope) {
 
     $scope.initDate = new Date('2016-15-20');
     $scope.format = 'MM/dd/yyyy';
+
+    $scope.hstep = 1;
+    $scope.mstep = 5;
+
+    $scope.now();
+    $scope.isMeridian = true;
+
+    $scope.isCollapsed = false;
 };

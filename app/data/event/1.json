@@ -1,7 +1,6 @@
 {"name": "Angular Boot Camp",
             "id": 1,
-            "date": "1/1/2013",
-            "time": "10:30 am",
+            "date":"2014-06-18T15:00:00.000Z",
             "location": {
                 "address": "Google Headquarters",
                 "city": "Mountain View",
