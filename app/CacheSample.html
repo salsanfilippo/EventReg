@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en" ng-app="eventsApp">
+<head>
+    <meta charset="utf-8">
+    <title>Cache Sample </title>
+    <link data-require="bootstrap-css@3.1.1" data-semver="3.1.1" rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/app.css"/>
+</head>
+<body>
+<div class="container">
+    <div class="navbar">
+        <div class="navbar-inner">
+            <ul class="nav">
+                <li><a href="/NewEvent.html">New Event</a></li>
+            </ul>
+        </div>
+    </div>
+    <style>
+        input.ng-invalid.ng-dirty { background-color: pink; }
+    </style>
+    <div ng-controller="CacheSampleController" style="padding:20px;">
+
+        <div class="row">
+            <div class="col-xs-4">
+                <label for="keyEntry" >Key:</label>
+                <input id="keyEntry" class="form-control" type="text" ng-model="key"/><br/>
+            </div>
+            <div class="col-xs-4">
+                <label for="valueEntry" >Value:</label>
+                <input id="valueEntry" class="form-control" type="text" ng-model="value"/><br/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-8">
+                <button type="button" class="btn btn-sm btn-info" ng-click="addToCache(key, value)">Add To Cache</button><br/>
+            </div>
+        </div>
+
+        <br />
+        <br />
+        <div class="row">
+            <div class="col-xs-8">
+                <label for="keyInput" >Search by Key:</label>
+                <input id="keyInput" class="form-control" type="text" ng-model="keyToRead"/><br/>
+            </div>
+        </div>
+        <br/>
+        <pre>Value from Cache: <em>{{ readFromCache(keyToRead) }}</em></pre>
+        <pre>Cache Statistics: <em>{{ getCacheStats() }}</em></pre>
+    </div>
+</div>
+
+<!-- Load from CDN -->
+<script data-require="jquery@*" data-semver="2.0.3" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+<script data-require="underscore@*" data-semver="1.6.0" src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
+<script data-require="bootstrap@*" data-semver="3.1.1" src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+<!--
+<script src="https://code.angularjs.org/snapshot/angular.min.js"></script>
+<script src="https://code.angularjs.org/snapshot/angular-resource.min.js"></script>
+-->
+
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.js"></script>
+<script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.11.0.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular-resource.js"></script>
+
+<!-- Load Locally -->
+<script src="/js/app.js"></script>
+<script src="/js/controllers/CacheSampleController.js"></script>
+
+</body>
+</html>
