@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html ng-app="eventsApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Event Registration</title>
+
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/app.css" />
+</head>
+<body ng-cloak>
+<div class="container">
+    <div class="navbar" ng-controller="MainMenuController">
+        <div class="navbar-inner">
+            <ul class="nav">
+                <li><a href="#" ng-click="createEvent()" >Create Event</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <style>
+        input.ng-invalid.ng-dirty { background-color: pink; }
+    </style>
+    <ng-view>
+
+    </ng-view>
+</div>
+
+<!-- Load from CDN -->
+<script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+<!--
+<script src="https://code.angularjs.org/snapshot/angular.min.js"></script>
+<script src="https://code.angularjs.org/snapshot/angular-resource.min.js"></script>
+-->
+
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.js"></script>
+<script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.11.0.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular-sanitize.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular-route.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular-resource.js"></script>
+
+<!-- Load Locally -->
+<script src="/js/app.js"></script>
+<script src="/js/services/Authentication.js"></script>
+<script src="/js/services/UserData.js"></script>
+<script src="/js/services/EventData.js"></script>
+<script src="/js/services/GravatarUrlBuilder.js"></script>
+<script src="/js/directives/Gravatar.js"></script>
+<script src="/js/controllers/EditProfileController.js"></script>
+<script src="/js/controllers/EditEventController.js"></script>
+<script src="/js/controllers/EventController.js"></script>
+<script src="/js/controllers/ViewProfileController.js"></script>
+<script src="/js/controllers/EventListController.js"></script>
+<script src="/js/controllers/MainMenuController.js"></script>
+
+<script src="/js/directives/EventThumbnail.js"></script>
+<script src="/js/directives/UpVote.js"></script>
+
+<script src="/js/directives/SampleDirective.js"></script>
+<script src="/js/controllers/SampleDirectiveController.js"></script>
+
+<script src="/js/filters.js"></script>
+</body>
+</html>

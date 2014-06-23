@@ -31,10 +31,11 @@
 
         <hr />
         <button type="button" class="btn btn-sm btn-info" ng-click="today()">Today</button>
+        <button type="button" class="btn btn-sm btn-info" ng-click="now()">Now</button>
         <button type="button" class="btn btn-sm btn-danger" ng-click="clearDate()">Clear Date</button>
-        <button type="button" class="btn btn-sm btn-default" ng-click="event.date = '2009-08-24'">2009-08-24</button>
-        <button type="button" class="btn btn-sm btn-default" ng-click="toggleMin()" tooltip="After today restriction">Min date</button>
-        <button type="button" class="btn btn-sm btn-default" ng-click="toggleMax()" tooltip="Max date restriction">Max date</button>
+        <button type="button" class="btn btn-sm btn-default" ng-click="setDateAsLocal('2009-08-24')">2009-08-24</button>
+        <button type="button" class="btn btn-sm btn-default" ng-click="toggleMin()" tooltip="Minimum date restriction">Min date</button>
+        <button type="button" class="btn btn-sm btn-default" ng-click="toggleMax()" tooltip="Maximum date restriction">Max date</button>
     </div>
 
     <!--

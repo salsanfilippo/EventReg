@@ -1,5 +1,19 @@
 var DatePickerController = function ($scope) {
+    $scope.setDateAsLocal = function(date) {
+        $scope.event.date = new Date(date + ' 00:00:00.000');
+    };
+
     $scope.today = function() {
+        var date = new Date();
+        $scope.event.date = new Date(date.getFullYear(),
+            date.getMonth(),
+            date.getDate(),
+            0,
+            0,
+            0);
+    };
+
+    $scope.now = function() {
         $scope.event.date = new Date();
     };
 
@@ -16,7 +30,7 @@ var DatePickerController = function ($scope) {
             $scope.maxDate = null;
         } else {
             $scope.maxDate = new Date();
-            $scope.maxDate.setFullYear($scope.maxDate.getFullYear()+1);
+            $scope.maxDate.setFullYear($scope.maxDate.getFullYear()+5);
         }
     };
 
@@ -27,32 +41,28 @@ var DatePickerController = function ($scope) {
         $scope.opened = true;
     };
 
+    $scope.timeChanged = function () {
+        console.log('Time changed to: ' + $scope.event.date);
+    };
+
+    $scope.isWeekEndDay = function (date, mode) {
+        return ( mode === 'day' && ( date.getDay() === 0 ||
+            date.getDay() === 6 ));
+    };
+
     // Disable weekend selection
     $scope.disabled = function(date, mode) {
-        return false; // ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
-    };
-
-    $scope.now = function() {
-        $scope.event.time = new Date();
-    };
-
-    $scope.timeChanged = function () {
-        console.log('Time changed to: ' + $scope.event.time);
-    };
-
-    $scope.clearTime = function() {
-        $scope.event.time = null;
+        return false; //  );
     };
 
     $scope.toggleMeridian = function() {
         $scope.isMeridian = !$scope.isMeridian;
     };
 
-    $scope.event = {};
-    $scope.today();
+    $scope.event = { };
 
+    $scope.today();
     $scope.toggleMin();
-    $scope.toggleMax();
 
     $scope.dateOptions = {
         formatYear: 'yyyy',
@@ -60,14 +70,12 @@ var DatePickerController = function ($scope) {
         startingDay: 0
     };
 
-    $scope.initDate = new Date('2016-15-20');
-    $scope.format = 'MM/dd/yyyy';
+    $scope.formats = ['MM/dd/yyyy', 'dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+    $scope.format = $scope.formats[0];
 
     $scope.hstep = 1;
-    $scope.mstep = 5;
+    $scope.mstep = 1;
 
-    $scope.now();
     $scope.isMeridian = true;
-
     $scope.isCollapsed = false;
 };

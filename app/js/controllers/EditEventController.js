@@ -3,6 +3,19 @@
 eventsApp.controller('EditEventController',
     function EditEventController($scope, eventData) {
         $scope.disableSubmit = false;
+        $scope.events = eventData.getAllEvents()
+
+        $scope.displayNextEventId = function () {
+            var max = 0;
+            for (var index = 0; index < events.length; index++) {
+                if (events[index].id > max) {
+                    max = events[index].id;
+                }
+            }
+
+            console.log('Next Event Id: '+max+1);
+        };
+
         $scope.saveEvent = function(event, newEventForm) {
             if (newEventForm.$valid) {
                 eventData.saveEvent(event)
@@ -21,7 +34,7 @@ eventsApp.controller('EditEventController',
         };
 
         $scope.cancelEvent = function() {
-            window.location = '/EventDetails.html';
+            window.location = 'events';
         }
 
         $scope.toggleMin = function() {

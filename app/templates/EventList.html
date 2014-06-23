@@ -1,0 +1,9 @@
+<div >
+    <h1>Events</h1>
+    <hr/>
+    <ul class="thumbnails" style="list-style-type: none;">
+        <li ng-repeat="event in events|orderBy:sortorder">
+            <event-thumbnail event="event" />
+        </li>
+    </ul>
+</div>
