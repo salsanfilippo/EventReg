@@ -1,7 +1,6 @@
 'use strict';
 
 eventsApp.factory('userData', function ($resource) {
-//    debugger;
     var resource = $resource('/data/user/:userName', {userName:'@userName'}, { });
     return {
         getUser: function(userName, callback) {

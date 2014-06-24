@@ -1,9 +1,9 @@
 'use strict';
 
-eventsApp.directive('upVote', function ($compile) {
+eventsApp.directive('updownVote', function ($compile) {
     return {
         restrict: "AE",
-        templateUrl: "/templates/directives/upvote.html",
+        templateUrl: "/templates/directives/updownvote.html",
         scope: {
             upvote: "&",
             downvote: "&",

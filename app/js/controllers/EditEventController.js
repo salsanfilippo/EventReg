@@ -3,17 +3,25 @@
 eventsApp.controller('EditEventController',
     function EditEventController($scope, eventData) {
         $scope.disableSubmit = false;
-        $scope.events = eventData.getAllEvents()
+        $scope.editingEvent = false;
+        $scope.nextEventId = null;
 
         $scope.displayNextEventId = function () {
-            var max = 0;
-            for (var index = 0; index < events.length; index++) {
-                if (events[index].id > max) {
-                    max = events[index].id;
+            var events = eventData.getAllEvents();
+            console.log(events);
+            events.$promise
+                  .then(function() {
+                console.log(events);
+                var max = 0;
+                for (var index = 0; index < events.length; index++) {
+                    if (events[index].id > max) {
+                        max = events[index].id;
+                    }
                 }
-            }
 
-            console.log('Next Event Id: '+max+1);
+                $scope.nextEventId = max +1;
+                console.log('Next Event Id: '+$scope.nextEventId);
+            })
         };
 
         $scope.saveEvent = function(event, newEventForm) {

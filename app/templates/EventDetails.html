@@ -40,9 +40,9 @@
     <ul class="thumbnails" style="list-style-type: none;">
         <li ng-repeat="session in event.sessions | orderBy: sortOrder | filter: query" id="session{{session.id}}">
             <div class="row col-xs-10 session">
-                <up-vote upvote="upVoteSession(session)"
+                <updown-vote upvote="upVoteSession(session)"
                          downvote="downVoteSession(session)"
-                         count="session.upVoteCount"></up-vote>
+                         count="session.upVoteCount"></updown-vote>
                 <div class="well col-xs-11">
                     <h4 class="well-title">{{ session.name }}</h4>
                     <h6 style="margin-top: -10px;">{{ session.creatorName }}</h6>
