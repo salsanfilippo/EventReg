@@ -1,31 +1,52 @@
-<div class="container" style="padding-left: 20px; padding-right: 20px;">
-    <h1 ng-hide="editingEvent">New Event</h1>
-    <h1 ng-show="editingEvent">Edit Event</h1>
+<div style="padding-left: 20px; padding-right: 20px;">
+    <h1>New Event</h1>
     <hr/>
-    <form name="editEventForm">
+    <form name="newEventForm">
         <div class="row">
             <div class="col-xs-7">
                 <label for="eventName">Event Name:</label>
-                <input id="eventName" class="form-control" type="text" required ng-model="event.name" placeholder="Name of your event."/>
+                <input id="eventName" name="eventName" class="form-control" type="text" required ng-model="event.name" placeholder="Name of your event."/>
+                <span class="error" ng-show="newEventForm.eventName.$error.required">Required!</span>
             </div>
         </div>
         <div class="row">
             <div class="col-xs-4" style="margin-top: 9px;">
                 <label for="eventDate">Event Date and Time:</label>
                 <p class="input-group">
-                    <input id="eventDate" type="text" date-keys="" class="form-control" datepicker-popup="MM/dd/yyyy" ng-model="event.date" is-open="opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+                    <input id="eventDate"
+                           name="eventDate"
+                           type="text"
+                           class="form-control"
+                           datepicker-popup="MM/dd/yyyy"
+                           ng-model="event.date"
+                           is-open="opened"
+                           is-date
+                           min-date="minDate"
+                           max-date="maxDate"
+                           datepicker-options="dateOptions"
+                           date-disabled="disabled(date, mode)"
+                           required
+                           close-text="Close" />
                     <span class="input-group-btn">
                       <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
                     </span>
                 </p>
+                <span class="error" ng-show="newEventForm.eventDate.$error.required && !newEventForm.eventDate.$error.date">Please enter a date!</span>
+                <span class="error" ng-show="newEventForm.eventDate.$error.date">Please enter a valid date!</span>
+                <script>
+                    console.log(newEventForm);
+                    console.log(newEventForm.eventDate);
+                    console.log(newEventForm.eventDate.$error);
+                </script>
+
             </div>
-            <div class="col-xs-2" style="">
+            <div class="col-xs-3" style="">
                 <timepicker ng-model="event.date" ng-change="timeChanged()" readonly-input="false" hour-step="hstep" minute-step="mstep" show-meridian="isMeridian"></timepicker>
             </div>
         </div>
 
         <div class="row">
-            <div class="col-xs-7" style="margin-top: -22px;">
+            <div class="col-xs-7" style="margin-top: -18px;">
                 <label for="eventLocation">Event Location:</label>
                 <input id="eventLocation" type="text" class="form-control" ng-model="event.location.address" placeholder="Address"/>
             </div>
@@ -48,14 +69,13 @@
         <img ng-src="{{ event.imageUrl }}" src="" style="margin-top: 5px; margin-bottom: 5px;" />
         <br/>
 
-        <button type="submit" ng-disabled="disableSubmit || editEventForm.$invalid" ng-click="saveEvent(event, editEventForm)" class="btn btn-primary">Save</button>
+        <button type="submit" ng-disabled="disableSubmit || newEventForm.$invalid" ng-click="saveEvent(event, newEventForm)" class="btn btn-primary">Save</button>
         <button type="button" ng-click="cancelEvent()" class="btn btn-default">Cancel</button>
         <button type="button" ng-click="displayNextEventId()" class="btn btn-info">Next Id</button>
+        <button type="button" ng-click="showDate()" class="btn btn-info">Date Value</button>
 
         <br/>
         <br/>
         <pre>Next Event Id: <em>{{ nextEventId }}</em></pre>
-
-        <date-picker></date-picker>
     </form>
 </div>

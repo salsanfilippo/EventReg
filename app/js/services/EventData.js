@@ -1,6 +1,6 @@
 'use strict';
 
-eventsApp.factory('eventData', function ($resource, authService) {
+eventsApp.factory('eventData', function ($http, $resource, authService) {
     var resource = $resource('/data/event/:id', {id:'@id'});
     return {
         getEvent: function(eventId, callback) {
@@ -26,7 +26,7 @@ eventsApp.factory('eventData', function ($resource, authService) {
 
         saveEvent: function(event, callback) {
             if (event.id) {
-                resource.save(event, function() { if (callback) callback(); });
+                resource.save(event, function(p1, p2, p3) { if (callback) callback(p1, p2, p3); });
             } else {
 
                 resource.query({}, (function(events) {
@@ -35,9 +35,27 @@ eventsApp.factory('eventData', function ($resource, authService) {
                     event.creator = authService.getCurrentUserName();
                     event.id = getNextEventId(events);
                     event.sessions = [];
-                    resource.save(event);
-                    if (callback)
-                        callback();
+                    debugger
+                    //resource.save(event, function(p1, p2, p3) { if (callback) callback(p1, p2, p3); });
+                    $http({
+                        url: '/data/event/',
+                        method: 'POST',
+                        data: JSON.stringify(event),
+                        headers: {'Content-type': 'application/json'}
+                    })
+                        .success(function(data, status, headers, config) {
+                            console.log('Success: ', data, status, headers, config)
+                            if (callback)
+                                callback(data, status, headers);
+                        })
+                        .error(function(data, status, headers, config) {
+                            console.log('Error: ', data, status, headers, config)
+
+                        })
+
+                    //resource.save(event);
+                    //if (callback)
+                    //    callback();
                 }));
             }
         }

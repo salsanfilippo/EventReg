@@ -1,0 +1,11 @@
+<div class="well col-xs-11">
+    <collapsible title="{{ session.name }}">
+        <button type="button" class="btn editSessionBtn" ng-show="editable" ng-click="edit(session)">Edit</button>
+        <h6 style="margin-top: -10px;"><a href="/viewProfile/{{session.creator}}">{{ session.creatorName }}</a></h6>
+        <span>Duration: {{ session.duration | durations }}</span><br/>
+        <span>Level: <img ng-src="{{ '/img/' }}{{ session.level }}{{ '.png' }}" alt="{{ session.level }}" width="17px" height="14px"/></span>
+        <p>
+            {{ session.abstract }}
+        </p>
+    </collapsible>
+</div>

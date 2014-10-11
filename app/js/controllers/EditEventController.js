@@ -1,10 +1,17 @@
 'use strict';
 
 eventsApp.controller('EditEventController',
-    function EditEventController($scope, eventData) {
+    function EditEventController($scope, $location, eventData) {
+        //$scope.dateRegex = /^(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d+$/;
+        $scope.dateRegex = /^\d\d[- /.]\d\d[- /.]\d\d\d\d$/;
+
         $scope.disableSubmit = false;
         $scope.editingEvent = false;
         $scope.nextEventId = null;
+
+        $scope.showDate = function () {
+            alert($scope.event.date);
+        };
 
         $scope.displayNextEventId = function () {
             var events = eventData.getAllEvents();
@@ -25,36 +32,43 @@ eventsApp.controller('EditEventController',
         };
 
         $scope.saveEvent = function(event, newEventForm) {
+            debugger
             if (newEventForm.$valid) {
-                eventData.saveEvent(event)
-                    .$promise
-                    .then(
-                        function (response) {
-                            $scope.disableSubmit = true;
-                            alert("Saved Event '" + event.name + "'.");
-                            console.log('success', response);
-                        },
-                        function (response) {
-                            console.log('failure', response);
-                        }
-                    );
+                var response = eventData.saveEvent(event, function(p1, p2, p3) {
+                    debugger
+                    // Access to new ID
+                    console.log(event.id);
+
+                    // Redirect to Events page
+                    $location.url("/events");
+                });
             }
         };
 
         $scope.cancelEvent = function() {
-            window.location = 'events';
+            $location.url('/events');
         }
 
-        $scope.toggleMin = function() {
-            $scope.minDate = $scope.minDate ? null : new Date();
+        /* Date Picker Helper Methods */
+
+        // Disable weekend selection
+        $scope.disabled = function(date, mode) {
+            return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
         };
 
-        $scope.toggleMax = function() {
-            if ($scope.maxDate) {
-                $scope.maxDate = null;
+        /* Date Picker Instance Helper Methods */
+
+        $scope.toggleMin = function(minDate) {
+            return minDate ? null : new Date();
+        };
+
+        $scope.toggleMax = function(maxDate) {
+            if (maxDate) {
+                return null;
             } else {
-                $scope.maxDate = new Date();
-                $scope.maxDate.setFullYear($scope.maxDate.getFullYear()+1);
+                var newMax = new Date();
+                newMax.setFullYear(newMax.getFullYear()+1);
+                return newMax;
             }
         };
 
@@ -65,28 +79,16 @@ eventsApp.controller('EditEventController',
             $scope.opened = true;
         };
 
-        // Disable weekend selection
-        $scope.disabled = function(date, mode) {
-            // Uncomment to disable weekend days
-            // return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
-
-            // Use all days
-            return false;
-        };
-
         $scope.timeChanged = function () {
             console.log('Time changed to: ' + $scope.event.date);
         };
 
-        $scope.toggleMeridian = function() {
-            $scope.isMeridian = !$scope.isMeridian;
+        $scope.toggleMeridian = function(isMeridian) {
+            return !isMeridian;
         };
 
-        $scope.event = {};
-        $scope.event.date = new Date();
-
-        $scope.toggleMin();
-        $scope.toggleMax();
+        /* Date Setup for first instance */
+        $scope.format = 'MM/dd/yyyy';
 
         $scope.dateOptions = {
             formatYear: 'yyyy',
@@ -94,12 +96,16 @@ eventsApp.controller('EditEventController',
             startingDay: 0
         };
 
-        $scope.format = 'MM/dd/yyyy';
-
         $scope.hstep = 1;
         $scope.mstep = 1;
 
         $scope.isMeridian = true;
 
+        /* Scope initialization */
+        $scope.event = {};
+
+        $scope.minDate = "2014/01/01";
+        $scope.maxDate = "2014/12/31";
+        $scope.event.date = new Date();
     }
 )

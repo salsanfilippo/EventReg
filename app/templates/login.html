@@ -1,0 +1,25 @@
+<div class="container-fluid"  enter-target="loginButton">
+    <form name="loginForm">
+
+    <h3 style="color:red;" ng-show="hasError">{{ errorMessage }}</h3>
+    <div class="row">
+        <div class="col-xs-4">
+            <label for="userName">User Name:</label>
+            <input focus id="userName" class="form-control" type="text" required placeholder="Username" ng-model="user.userName">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-4">
+            <label for="password">Password:</label>
+            <input id="password" class="form-control" type="password" required placeholder="Password" ng-model="user.password">
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-xs-10">
+            <button type="submit" id="loginButton" class="btn btn-primary" ng-click="login()">Login</button>
+            <button type="button" id="cancelButton" class="btn btn-default" ng-click="cancel()">Cancel</button>
+        </div>
+    </div>
+    </form>
+</div>

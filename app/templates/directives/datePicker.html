@@ -1,28 +1,18 @@
-<div class="calendar no-select">
-    <div class="row">
-        <div class="calendar-nav-left pointer" ng-click="previousYear()"><i class="glyphicon glyphicon-chevron-left"></i></div>
-        <div class="calendar-hdr">
-            {{calendar.year}}
-        </div>
-        <div class="calendar-nav-right pointer" ng-click="nextYear()"><i class="glyphicon glyphicon-chevron-right"></i></div>
-    </div>
-    <div class="row">
-        <div class="calendar-nav-left pointer" ng-click="previousMonth()"><i class="glyphicon glyphicon-chevron-left"></i></div>
-        <div class="calendar-hdr">
-            {{calendar.monthName}}
-        </div>
-        <div class="calendar-nav-right pointer" ng-click="nextMonth()"><i class="glyphicon glyphicon-chevron-right"></i></div>
-    </div>
-    <div class="row">
-        <div>Sun</div>
-        <div>Mon</div>
-        <div>Tue</div>
-        <div>Wed</div>
-        <div>Thu</div>
-        <div>Fri</div>
-        <div>Sat</div>
-    </div>
-    <div class="row">
-        <div class="pointer" ng-repeat="day in days" ng-click="selectDate(day)">{{day}}</div>
-    </div>
-</div>
+<p class="input-group">
+    <input name="eventDate"
+           type="text"
+           date-keys=""
+           class="form-control"
+           datepicker-popup="MM/dd/yyyy"
+           ng-model="date"
+           is-open="opened"
+           min-date="minDate"
+           max-date="maxDate"
+           datepicker-options="dateOptions"
+           date-disabled="disabled(date, mode)"
+           ng-required="isRequired"
+           close-text="Close"/>
+    <span class="input-group-btn">
+        <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+    </span>
+</p>

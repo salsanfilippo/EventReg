@@ -24,6 +24,8 @@ var eventsApp = angular.module('eventsApp', ['ui.bootstrap', 'ngRoute', 'ngResou
                             { templateUrl: '/templates/viewProfile.html', controller: 'ViewProfileController' });
         $routeProvider.when('/sampleDirective',
                             { templateUrl: '/templates/SampleDirective.html', controller: 'SampleDirectiveController' });
+        $routeProvider.when('/login',
+                            { templateUrl: '/templates/login.html', controller: 'LoginController' });
         $routeProvider.otherwise({redirectTo: '/events'});
         $locationProvider.html5Mode(true);
     });

@@ -3,50 +3,107 @@
 <form name="profileForm">
     <div class="row">
         <div class="col-xs-3">
-            <!--img ng-src="{{ getGravatarUrl(user.emailAddress) }}"/-->
             <gravatar email="{{ user.emailAddress }}"/>
         </div>
         <div class="col-xs-9" style="margin-left: -20px;">
             <div class="row">
                 <div class="col-xs-8">
                     <label for="userName">User Name:</label>
-                    <input focus id="userName" class="form-control" required ng-pattern="/^[-A-Za-z0-9]{2,20}$/" type="text" placeholder="Username" ng-model="user.userName" />
+                    <input focus
+                           id="userName"
+                           name="userName"
+                           type="text"
+                           class="form-control"
+                           required
+                           ng-model="user.userName"
+                           ng-pattern="/^[-A-Za-z0-9]{3,20}$/"
+                           ensure-unique="username"
+                           placeholder="Username" />
+                    <small class="alert-danger" ng-show="profileForm.userName.$dirty && profileForm.userName.$error.required">
+                        Username is required.</small>
+                    <small class="alert-danger" ng-show="profileForm.userName.$dirty && profileForm.userName.$error.pattern">
+                        Username must alphanumeric 3-20 characters.</small>
+                    <small class="alert-danger" ng-show="profileForm.userName.$dirty && profileForm.userName.$error.unique">
+                        Username is already taken.</small>
                 </div>
             </div>
             <div class="row">
                 <div class="col-xs-8">
                     <label for="emailAddress">Email Address:</label>
-                    <input id="emailAddress" type="email" class="form-control" placeholder="Email Address" ng-model="user.emailAddress" />
+                    <input id="emailAddress"
+                           name="emailAddress"
+                           type="text"
+                           class="form-control"
+                           ng-model="user.emailAddress"
+                           placeholder="Email Address"
+                           ng-pattern="/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/"
+                           required />
+                    <small class="alert-danger" ng-show="profileForm.emailAddress.$dirty && profileForm.emailAddress.$error.required">
+                        Email address is required.</small>
+                    <small class="alert-danger" ng-show="profileForm.emailAddress.$dirty && profileForm.emailAddress.$error.pattern">
+                        A valid email address is required.</small>
                 </div>
             </div>
             <div class="row">
                 <div class="col-xs-8">
                     <label for="password">Password:</label>
-                    <input id="password" class="form-control" required type="password" placeholder="Password" ng-model="user.password" />
+                    <input id="password"
+                           name="password"
+                           type="password"
+                           class="form-control"
+                           ng-model='user.password'
+                           placeholder="Password"
+                           required />
+                    <small class="alert-danger" ng-show="profileForm.password.$dirty && profileForm.password.$error.required">
+                        Password is required.</small>
                 </div>
             </div>
             <div class="row">
                 <div class="col-xs-8">
                     <label for="confirmPassword">Confirm Password:</label>
-                    <input id="confirmPassword" class="form-control" required type="password" placeholder="Confirm Password" ng-model="user.confirmPassword" />
+                    <input id="confirmPassword"
+                           name='confirmPassword'
+                           type="password"
+                           class="form-control"
+                           ng-model='user.passwordConfirm'
+                           placeholder="Confirm Password"
+                           required
+                           password-verify="user.password" />
+                    <small class="alert-danger" ng-show="profileForm.confirmPassword.$dirty && profileForm.confirmPassword.$error.required">
+                        Please confirm the password.</small>
+                    <small class="alert-danger" ng-show="profileForm.confirmPassword.$dirty && profileForm.confirmPassword.$error.passwordVerify">
+                        Does not match password.</small>
                 </div>
             </div>
             <div class="row">
                 <div class="col-xs-8">
                     <label for="name">Name:</label>
-                    <input id="name" type="text" class="form-control" required placeholder="Name" ng-model="user.name" />
+                    <input id="name"
+                           name="name"
+                           type="text"
+                           class="form-control"
+                           ng-model="user.name"
+                           placeholder="Name"
+                           required />
+                    <small class="alert-danger" ng-show="profileForm.name.$dirty && profileForm.name.$error.required">
+                        A name is required.</small>
                 </div>
             </div>
             <div class="row">
                 <div class="col-xs-8">
                     <label for="bio">Bio:</label>
-                    <textarea id="bio" rows="6" class="form-control" style="color:#52575c" placeholder="Bio" ng-model="user.bio"></textarea>
+                    <textarea id="bio"
+                              rows="6"
+                              class="form-control"
+                              style="color:#52575c"
+                              ng-model="user.bio"
+                              placeholder="Bio" ></textarea>
                 </div>
             </div>
             <div class="row">
                 <div class="col-xs-8">
                     <br/>
-                    <button type="submit" ng-disabled="profileForm.$invalid" ng-click="saveEvent(event, newEventForm)" class="btn btn-primary">Save</button>
+                    <button type="submit" ng-disabled="profileForm.$invalid" ng-click="updateProfile(user, profileForm)" class="btn btn-primary">Save</button>
                     <button type="button" ng-click="cancelProfile()" class="btn btn-default">Cancel</button>
                 </div>
             </div>

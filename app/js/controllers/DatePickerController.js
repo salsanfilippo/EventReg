@@ -52,6 +52,7 @@ var DatePickerController = function ($scope) {
 
     // Disable weekend selection
     $scope.disabled = function(date, mode) {
+        console.log('disabled: ' + date + ", " + mode);
         return false; //  );
     };
 
@@ -77,5 +78,4 @@ var DatePickerController = function ($scope) {
     $scope.mstep = 1;
 
     $scope.isMeridian = true;
-    $scope.isCollapsed = false;
 };

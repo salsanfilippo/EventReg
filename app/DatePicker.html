@@ -4,49 +4,45 @@
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-<div ng-controller="DatePickerController">
-    <button class="btn btn-default" ng-click="isCollapsed = !isCollapsed">Toggle collapse</button>
-    <hr>
-    <div collapse="isCollapsed">
-        <pre>Min date is: <em>{{minDate | date:'fullDate' }}</em></pre>
-        <pre>Max date is: <em>{{maxDate | date:'fullDate' }}</em></pre>
+<div> <!--ng-controller="DatePickerController"-->
+    <!--
+    <pre>Min date is: <em>{{minDate | date:'fullDate' }}</em></pre>
+    <pre>Max date is: <em>{{maxDate | date:'fullDate' }}</em></pre>
 
-        <div class="row">
-            <div class="col-xs-3" style="margin-top: 9px;">
-                <label for="eventDate">Date and Time:</label>
-                <p class="input-group">
-                    <input id="eventDate" type="text" class="form-control" datepicker-popup="MM/dd/yyyy" ng-model="event.date" is-open="opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
-                    <span class="input-group-btn">
-                      <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-                    </span>
-                </p>
-            </div>
-            <div class="col-xs-2">
-                <timepicker id="eventTime" ng-model="event.date" ng-change="timeChanged()" readonly-input="true" hour-step="hstep" minute-step="mstep" show-meridian="isMeridian"></timepicker>
-            </div>
+    <div class="row">
+        <div class="col-xs-6" style="margin-top: 9px;">
+            <label for="eventDate">Date and Time:</label>
+            <p class="input-group">
+                <input id="eventDate" type="text" class="form-control" datepicker-popup="MM/dd/yyyy" ng-model="event.date" is-open="opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+            </p>
         </div>
-
-        <pre>Selected date is: <em>{{event.date | date:'fullDate' }}</em></pre>
-        <pre>Event Time is: <em>{{event.date | date:'hh:mma' }}</em></pre>
-
-        <hr />
-        <button type="button" class="btn btn-sm btn-info" ng-click="today()">Today</button>
-        <button type="button" class="btn btn-sm btn-info" ng-click="now()">Now</button>
-        <button type="button" class="btn btn-sm btn-danger" ng-click="clearDate()">Clear Date</button>
-        <button type="button" class="btn btn-sm btn-default" ng-click="setDateAsLocal('2009-08-24')">2009-08-24</button>
-        <button type="button" class="btn btn-sm btn-default" ng-click="toggleMin()" tooltip="Minimum date restriction">Min date</button>
-        <button type="button" class="btn btn-sm btn-default" ng-click="toggleMax()" tooltip="Maximum date restriction">Max date</button>
+        <div class="col-xs-6">
+            <timepicker id="eventTime" ng-model="event.date" ng-change="timeChanged()" readonly-input="true" hour-step="hstep" minute-step="mstep" show-meridian="isMeridian"></timepicker>
+        </div>
     </div>
 
-    <!--
-    <script src="https://code.angularjs.org/snapshot/angular.min.js"></script>
-    <script src="https://code.angularjs.org/snapshot/angular-resource.min.js"></script>
-    -->
+    <pre>Selected date is: <em>{{event.date | date:'fullDate' }}</em></pre>
+    <pre>Event Time is: <em>{{event.date | date:'hh:mma' }}</em></pre>
 
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.js"></script>
-    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.11.0.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular-resource.js"></script>
-    <script src="js/app.js"></script>
-    <script src="js/controllers/DatePickerController.js"></script>
+    <hr />
+    <button type="button" class="btn btn-sm btn-info" ng-click="today()">Today</button>
+    <button type="button" class="btn btn-sm btn-info" ng-click="now()">Now</button>
+    <button type="button" class="btn btn-sm btn-danger" ng-click="clearDate()">Clear Date</button>
+    <button type="button" class="btn btn-sm btn-default" ng-click="setDateAsLocal('2009-08-24')">2009-08-24</button>
+    <button type="button" class="btn btn-sm btn-default" ng-click="toggleMin()" tooltip="After today restriction lesser date">Min date</button>
+    <button type="button" class="btn btn-sm btn-default" ng-click="toggleMax()" tooltip="After today restriction greater date">Max date</button>
+
+    <br/>
+    <br/>
+    -->
+</div>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.js"></script>
+<script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.11.0.js"></script>
+
+<!--script src="/js/app.js"></script>
+<!--script src="/js/controllers/DatePickerController.js"></script-->
 </body>
 </html>
