@@ -1,27 +1,24 @@
-eventsApp.directive("passwordVerify", function() {
-    return {
-        require: 'ngModel',
-        link: function (scope, elem, attrs, model) {
-            if (!attrs.passwordVerify) {
-                console.error('passwordVerify expects a model as an argument!');
-                return;
-            }
-            scope.$watch(attrs.passwordVerify, function (value) {
-                // Only compare values if the second ctrl has a value.
-                if (model.$viewValue !== undefined && model.$viewValue !== '') {
-                    model.$setValidity('passwordVerify', value === model.$viewValue);
-                }
-            });
-            model.$parsers.push(function (value) {
-                // Mute the passwordVerify error if the second ctrl is empty.
-                if (value === undefined || value === '') {
-                    model.$setValidity('passwordVerify', true);
-                    return value;
-                }
-                var isValid = value === scope.$eval(attrs.passwordVerify);
-                model.$setValidity('passwordVerify', isValid);
-                return isValid ? value : undefined;
-            });
-        }
-    };
-});
+app.directive('passwordConfirm', ['$parse', function ($parse) {
+ return {
+    restrict: 'A',
+    scope: {
+      matchTarget: '=',
+    },
+    require: 'ngModel',
+    link: function link(scope, elem, attrs, ctrl) {
+      var validator = function (value) {
+        console.log(value, scope.matchTarget);
+        ctrl.$setValidity('match', value === scope.matchTarget);
+        return value;
+      }
+ 
+      ctrl.$parsers.unshift(validator);
+      ctrl.$formatters.push(validator);
+      
+      // This is to force validator when the original password gets changed
+      scope.$watch('matchTarget', function(newval, oldval) {
+        validator(ctrl.$viewValue);
+      });
+    }
+  };
+}]);
